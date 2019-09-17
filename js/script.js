@@ -2,7 +2,7 @@
 var HOME_PAGE_NAME = '72157648380751487'
         function flickIt(jQuerySelector, displayType, photosetId, opt_cbk){
             jQuerySelector.html('<p class="flickr-msg">Chargement</p>');
-            console.log('flickit xxxxxxxxx', displayType)
+            console.log('flickit xxxxxxxxx', jQuerySelector, displayType)
             jQuerySelector.flickr({
                 api_key: "7b5f9448ae4547ff02d6ce3db22e482d",
                 type: 'photoset',
