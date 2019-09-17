@@ -11,8 +11,10 @@ var HOME_PAGE_NAME = '72157648380751487'
                 thumb_size: 'n',
                 displayType: displayType,
                 callback: function(e){
+                    console.log('cbk kkkkk', displayType, opt_cbk)
                     // lightbox
                     if (displayType === 'fancybox'){
+                        console.log('cbk ', $(jQuerySelector).find('a'))
                       $(jQuerySelector).find('a').fancybox();
                     }
                     // callback
