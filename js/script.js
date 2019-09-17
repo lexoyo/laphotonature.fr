@@ -86,7 +86,7 @@ var HOME_PAGE_NAME = '72157648380751487'
 function getCurrentPageName() {
     var res = window.location.href.split('#').pop().split('!page-').pop().split('/').pop().split('.')[0];
     console.log('getCurrentPageName', res, HOME_PAGE_NAME)
-    if(res === 'index') return HOME_PAGE_NAME;
+    if(!res || res === 'index') return HOME_PAGE_NAME;
     console.log('getCurrentPageName xxxxxxxxx')
     return res;
 }
