@@ -62,7 +62,9 @@
             onPageChange(window.location.href);
         });
 function getCurrentPageName() {
-    return window.location.href.split('#').pop().split('!page-').pop().split('/').pop().split('.')[0] || '72157648380751487';
+    var res = window.location.href.split('#').pop().split('!page-').pop().split('/').pop().split('.')[0];
+    if(res === 'index') return '72157648380751487';
+    return res;
 }
 
 // code from https://stackoverflow.com/questions/14798403/typeerror-browser-is-undefined
