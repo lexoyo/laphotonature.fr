@@ -49,12 +49,17 @@
         $(function(){
             window.jQuerySelector = $(".flickr .silex-element-content");
             //flickIt(jQuerySelector, 'slideshow', albums.home, slideIt);
-            var currentPage = $('body').pageable().data()["silexlabs-pageable"].options.currentPage;
-            currentPage = currentPage.substr(currentPage.indexOf('page-') + 5);
+            // var currentPage = $('body').pageable().data()["silexlabs-pageable"].options.currentPage;
+            // currentPage = currentPage.substr(currentPage.indexOf('page-') + 5);
+
+            // var currentPage = window.location.href.split('/').pop().split('.')[0];
+            // works in preview and published
+            var currentPage = window.location.href.split('#').pop().split('!page-').pop().split('/').pop().split('.')[0];
             flickIt(jQuerySelector, 'slideshow', currentPage, slideIt);
             onPageChange(window.location.href);
         })
+/*
         $(window).bind( 'hashchange', function (e){
             onPageChange(window.location.href);
         });
-    
+    */
