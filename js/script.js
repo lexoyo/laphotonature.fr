@@ -52,7 +52,7 @@ var HOME_PAGE_NAME = '72157648380751487'
 
             var currentPage = getCurrentPageName();
             var isGalery = $(".gallery")[0].classList.contains('paged-element-visible');
-            var isSlideshow = $(".flicker .silex-element-content")[0].classList.contains('paged-element-visible');
+            var isSlideshow = $(".flickr .silex-element-content")[0].classList.contains('paged-element-visible');
             console.log('starting 2', currentPage)
 
             if(isSlideshow) {
