@@ -52,16 +52,16 @@ var HOME_PAGE_NAME = '72157648380751487'
 
             var currentPage = getCurrentPageName();
             var isGalery = $(".gallery")[0].classList.contains('paged-element-visible');
-            var isSlideshow = $(".flickr .silex-element-content")[0].classList.contains('paged-element-visible');
-            console.log('starting 2', currentPage)
+            var isSlideshow = $(".flickr")[0].classList.contains('paged-element-visible');
+            console.log('starting 2', currentPage, isGalery, isSlideshow)
 
             if(isSlideshow) {
-                console.log('starting 3')
+                console.log('isSlideshow')
                 window.jQuerySelector = $(".flickr .silex-element-content");
                 flickIt(jQuerySelector, 'slideshow', currentPage, slideIt);
             }
             if(isGalery) {
-                console.log('starting 4')
+                console.log('isGalery')
                 window.jQuerySelector = $(".gallery");
                 flickIt(jQuerySelector, 'fancybox', getPhotosetId(currentPage));
             }
