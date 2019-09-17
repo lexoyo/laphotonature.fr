@@ -1,187 +1,60 @@
-<!DOCTYPE html><html lang=""><head>
-    <title>Georges Le Roux photography</title>
+<!doctype html><html lang=""><head>
+    <title>Georges Le Roux photography - 72157648380751487</title>
     <meta charset="UTF-8">
     <meta name="generator" content="Silex v2.2.10">
     <!-- leave this for stats -->
-    <script type="text/javascript" src="https://preprod.silex.me/static/2.10/jquery.js" data-silex-static=""></script>
-    <script type="text/javascript" src="https://preprod.silex.me/static/2.10/jquery-ui.js" data-silex-static=""></script>
-
-    <script type="text/javascript" src="https://preprod.silex.me/static/2.10/pageable.js" data-silex-static=""></script>
-    <script type="text/javascript" src="https://preprod.silex.me/static/2.10/front-end.js" data-silex-static=""></script>
-    <!-- Normalize -->
-    <link href="https://preprod.silex.me/static/2.10/normalize.css" rel="stylesheet" data-silex-static="">
-    <!-- Silex style -->
-    <link href="https://preprod.silex.me/static/2.10/front-end.css" rel="stylesheet" data-silex-static="">
-
-    <style type="text/css" class="silex-style">.full-width {width: 100% !important;}.right-side {width: inherit !important; right: 0 !important;}.bottom-side {height: inherit !important; bottom: 0 !important;}.silex-runtime .full-height {height: 100vh !important;}.centered {margin: auto; top: auto !important; left: auto !important; position: relative !important;}.over {z-index: 1;}.under {z-index: 0;}.bottom {top: initial !important; bottom: 0 !important;}.flickr-msg {color: white; margin-top: 50vh; text-align: center;}.gallery {background-color: rgba(0, 255, 0, .5) !important;}.silex-runtime .gallery {background-color: transparent !important;}.gallery,
-.gallery a:link {color: black;}.gallery ul li {list-style: none; margin-bottom: 10px; cursor: pointer;}.gallery ul li img {width: 100%;}.gallery ul {margin: 10px; -webkit-column-count: 3; -moz-column-count: 3; -o-column-count: 3; -ms-column-count: 3; column-count: 3;}.flickr ul {list-style: none;}.flickr ul li {position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center;}</style>
-    <script type="text/javascript" class="silex-script">var HOME_PAGE_NAME = '72157648380751487'
-        function flickIt(jQuerySelector, displayType, photosetId, opt_cbk){
-            //jQuerySelector.html('<p class="flickr-msg">Chargement</p>');
-            console.log('flickit xxxxxxxxx', jQuerySelector, displayType)
-            jQuerySelector.flickr({
-                api_key: "7b5f9448ae4547ff02d6ce3db22e482d",
-                type: 'photoset',
-                photoset_id: photosetId,
-                size: 'o',
-                thumb_size: 'n',
-                displayType: displayType,
-                callback: function(e){
-                    console.log('cbk kkkkk', displayType, opt_cbk)
-                    // lightbox
-                    if (displayType === 'fancybox'){
-                        console.log('cbk ', $(jQuerySelector).find('a'))
-                      $(jQuerySelector).find('a').fancybox();
-                    }
-                    // callback
-                    if (opt_cbk){
-                        opt_cbk(jQuerySelector);
-                    }
-                },
-                error: function(e){
-                    jQuerySelector.html('<p class="flickr-msg">Error loading flickr gallery. ' + e + '</p>');
-                }
-            });
-        }
-        
-        function slideIt(jQuerySelector){
-            console.log('slideIt', jQuerySelector, $(jQuerySelector).find('ul > li:gt(0)'))
-            $(jQuerySelector).find('ul > li:gt(0)').css('opacity', '0');
-            setInterval(function() {
-              $(jQuerySelector).find('ul > li:first')
-                .fadeOut(1000)
-                .next()
-                .css('opacity', '1')
-                .fadeIn(1000)
-                .end()
-                .appendTo($(jQuerySelector).find('ul'));
-            },  10000);
-        }
-        function getPhotosetId(pageName){
-            return pageName;
-            //return albums[pageName] || albums['default'];
-        }
-        function onPageChange(newUrl){
-            var currentPage = getCurrentPageName();
-            window.jQuerySelector = $(".gallery");
-            flickIt(jQuerySelector, 'fancybox', getPhotosetId(currentPage));
-        }
-        $(function(){
-            console.log('starting xxxxxxxxx')
-
-            var currentPage = getCurrentPageName();
-            var isGalery = 
-                (!!$(".gallery")[0] && $(".gallery")[0].classList.contains('paged-element-visible'))
-                || (!!$(".silex-published .gallery")[0])
-            var isSlideshow = 
-                (!!$(".flickr")[0] && $(".flickr")[0].classList.contains('paged-element-visible'))
-                || (!!$(".silex-published .flickr")[0])
-            console.log('starting 2', currentPage, isGalery, isSlideshow)
-
-            if(isSlideshow) {
-                console.log('isSlideshow')
-                window.jQuerySelector = $(".flickr .silex-element-content");
-                flickIt(window.jQuerySelector, 'slideshow', currentPage, slideIt);
-            }
-            if(isGalery) {
-                console.log('isGalery')
-                window.jQuerySelector = $(".gallery");
-                flickIt(window.jQuerySelector, 'fancybox', getPhotosetId(currentPage));
-            }
-            //flickIt(jQuerySelector, 'slideshow', albums.home, slideIt);
-            // var currentPage = $('body').pageable().data()["silexlabs-pageable"].options.currentPage;
-            // currentPage = currentPage.substr(currentPage.indexOf('page-') + 5);
-
-            // var currentPage = window.location.href.split('/').pop().split('.')[0];
-            // works in preview and published
-//            onPageChange(window.location.href);
-        })
-        $(window).bind( 'hashchange', function (e){
-            onPageChange(window.location.href);
-        });
-function getCurrentPageName() {
-    var res = window.location.href.split('#').pop().split('!page-').pop().split('/').pop().split('.')[0];
-    console.log('getCurrentPageName', res, HOME_PAGE_NAME)
-    if(res === 'index') return HOME_PAGE_NAME;
-    console.log('getCurrentPageName xxxxxxxxx')
-    return res;
-}
-
-// code from https://stackoverflow.com/questions/14798403/typeerror-browser-is-undefined
-        var matched, browser;
-
-jQuery.uaMatch = function( ua ) {
-    ua = ua.toLowerCase();
-
-    var match = /(chrome)[ \/]([\w.]+)/.exec( ua ) ||
-        /(webkit)[ \/]([\w.]+)/.exec( ua ) ||
-        /(opera)(?:.*version|)[ \/]([\w.]+)/.exec( ua ) ||
-        /(msie) ([\w.]+)/.exec( ua ) ||
-        ua.indexOf("compatible") < 0 && /(mozilla)(?:.*? rv:([\w.]+)|)/.exec( ua ) ||
-        [];
-
-    return {
-        browser: match[ 1 ] || "",
-        version: match[ 2 ] || "0"
-    };
-};
-
-matched = jQuery.uaMatch( navigator.userAgent );
-browser = {};
-
-if ( matched.browser ) {
-    browser[ matched.browser ] = true;
-    browser.version = matched.version;
-}
-
-// Chrome is Webkit, but Webkit is also Safari.
-if ( browser.chrome ) {
-    browser.webkit = true;
-} else if ( browser.webkit ) {
-    browser.safari = true;
-}
-
-jQuery.browser = browser;</script>
-
-    <style class="silex-inline-styles" type="text/css">.silex-id-1437826772462-25 {cursor: auto; background-color: rgb(32, 32, 32);}.silex-id-1568570228734-3 {}.silex-id-1568570228568-2 {min-height: 100px;}.silex-id-1568570247294-4 {min-height: 27px; width: 33px; background-color: transparent; top: 269px; left: 217px;}@media only screen and (max-width: 480px) {.silex-id-1568570247294-4 {min-height: 27px; top: -429px; left: -92px; width: 33px;}}.silex-id-1437826772361-24 {left: 0px; top: 1px; background-color: transparent; min-height: 283px; width: 1564px;}.silex-id-1437826772158-22 {width: 1165px; top: 17px; background-color: transparent; left: 279px; box-sizing: content-box; min-height: 43px;}.silex-id-1437826772057-21 {width: 408px; top: 60px; left: 863px; background-color: rgb(101, 83, 99); box-sizing: content-box; background-size: contain; min-height: 333px;}.silex-id-1437826771955-20 {width: 226px; top: 7px; left: 107px; box-sizing: content-box; min-height: 24px;}.silex-id-1437826771854-19 {width: 392px; top: 63px; left: 7px; box-sizing: content-box; min-height: 265px;}.silex-id-1437826771753-18 {width: 1211px; left: 353px; background-color: transparent; top: 4px; box-sizing: content-box; min-height: 956px;}.silex-id-1437826771652-17 {width: 1209px; top: 5px; left: 112px; background-color: transparent; box-sizing: content-box; min-height: 653px;}@media only screen and (max-width: 480px) {.silex-id-1437826771652-17 {min-height: 1295.25px; top: 0px; left: 0px; width: 467px;}}.silex-id-1437826771450-15 {width: 354px; top: 28px; left: 586px; box-sizing: content-box; min-height: 250.1666717529297px;}@media only screen and (max-width: 480px) {.silex-id-1437826771450-15 {min-height: 309px; top: 0px; left: 5px; width: 438px;}}.silex-id-1437826771551-16 {width: 349px; background-color: transparent; top: 269px; left: 594px; box-sizing: content-box; min-height: 360px;}@media only screen and (max-width: 480px) {.silex-id-1437826771551-16 {min-height: 280px; top: 0px; left: -47px; width: 467px;}}.silex-id-1437826771350-14 {width: 351px; top: 26px; left: 228px; box-sizing: content-box; min-height: 578.9000244140625px;}.silex-id-1437826771249-13 {width: 408px; top: 58px; left: 440px; background-color: rgb(101, 83, 99); box-sizing: content-box; background-size: contain; min-height: 333px;}.silex-id-1437826771147-12 {width: 397px; top: 63px; left: 8px; box-sizing: content-box; min-height: 267px;}.silex-id-1437826771046-11 {width: 226px; top: 8px; left: 148px; box-sizing: content-box; min-height: 34px;}.silex-id-1437826770945-10 {width: 261px; left: 5px; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; background-color: rgba(32,32,32,0.30196078431372547); top: 3px; box-sizing: content-box; min-height: 720px;}.silex-id-1437826770339-4 {width: 200px; top: 336px; left: 0px; box-sizing: content-box; background-color: transparent; min-height: 24px;}.silex-id-1437826769937-0 {width: 261px; top: 5px; background-color: transparent; left: 0px; box-sizing: content-box; min-height: 120px;}.silex-id-1437826770844-9 {width: 200px; top: 109px; left: 0px; min-height: 25px;}.silex-id-1437826770139-2 {width: 200px; top: 241px; left: 0px; box-sizing: content-box; min-height: 24px;}.silex-id-1437826770439-5 {width: 200px; top: 523px; left: 0px; box-sizing: content-box; min-height: 26px;}.silex-id-1437826770037-1 {width: 200px; top: 477px; left: 0px; min-height: 24px;}.silex-id-1437826770239-3 {width: 200px; top: 159px; left: 0px; box-sizing: content-box; background-color: transparent; min-height: 24px;}.silex-id-1437826770642-7 {width: 200px; top: 389px; background-color: transparent; left: 0px; min-height: 24px;}.silex-id-1568569363198-1 {width: 200px; top: 289px; left: 0px; box-sizing: content-box; background-color: transparent; min-height: 24px;}.silex-id-1445202311082-0 {width: 408px; top: 408px; left: 438px; background-color: rgb(101, 83, 99); box-sizing: content-box; background-size: contain; min-height: 333px;}.silex-id-1445202311083-1 {width: 397px; top: 63px; left: 8px; box-sizing: content-box; min-height: 267px;}.silex-id-1445202311083-2 {width: 226px; top: 8px; left: 148px; box-sizing: content-box; min-height: 34px;}.silex-id-1445203972218-0 {width: 397px; top: 63px; left: 6px; box-sizing: content-box; min-height: 267px;}.silex-id-1536497181900-0 {width: 408px; top: 405px; left: 863px; background-color: rgb(101, 83, 99); box-sizing: content-box; background-size: contain; min-height: 333px;}.silex-id-1536497181900-1 {width: 397px; top: 63px; left: 8px; box-sizing: content-box; min-height: 267px;}.silex-id-1536497181901-2 {width: 226px; top: 8px; left: 148px; box-sizing: content-box; min-height: 34px;}.silex-id-1536497181901-3 {width: 149px; top: 59px; left: 137px; box-sizing: content-box; min-height: 257px;}.silex-id-1437826772259-23 {width: 200px; top: 775px; left: 5px; min-height: 207px;}</style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <script type="text/json" class="silex-json-styles">[{"fonts":[{"family":"'Roboto', sans-serif","href":"https://fonts.googleapis.com/css?family=Roboto"},{"family":"'Indie Flower', cursive","href":"https://fonts.googleapis.com/css?family=Indie+Flower"}],"desktop":{"silex-id-1437826772462-25":{"cursor":"auto","left":"","top":"","background-color":"rgb(32, 32, 32)"},"silex-id-1437826772361-24":{"left":"0px","top":"1px","background-color":"transparent","min-height":"283px","width":"1564px"},"silex-id-1437826772259-23":{"width":"200px","top":"775px","left":"5px","min-height":"207px"},"silex-id-1437826772158-22":{"width":"1165px","top":"17px","background-color":"transparent","left":"279px","box-sizing":"content-box","min-height":"43px"},"silex-id-1437826772057-21":{"width":"408px","top":"60px","left":"863px","background-color":"rgb(101, 83, 99)","box-sizing":"content-box","background-size":"contain","min-height":"333px"},"silex-id-1437826771955-20":{"width":"226px","top":"7px","left":"107px","box-sizing":"content-box","min-height":"24px"},"silex-id-1437826771854-19":{"width":"392px","top":"63px","left":"7px","box-sizing":"content-box","min-height":"265px"},"silex-id-1437826771753-18":{"width":"1211px","left":"353px","background-color":"transparent","top":"4px","box-sizing":"content-box","min-height":"956px"},"silex-id-1437826771652-17":{"width":"1209px","top":"5px","left":"112px","background-color":"transparent","box-sizing":"content-box","min-height":"653px"},"silex-id-1437826771551-16":{"width":"349px","background-color":"transparent","top":"269px","left":"594px","box-sizing":"content-box","min-height":"360px"},"silex-id-1437826771450-15":{"width":"354px","top":"28px","left":"586px","box-sizing":"content-box","min-height":"250.1666717529297px"},"silex-id-1437826771350-14":{"width":"351px","top":"26px","left":"228px","box-sizing":"content-box","min-height":"578.9000244140625px"},"silex-id-1437826771249-13":{"width":"408px","top":"58px","left":"440px","background-color":"rgb(101, 83, 99)","box-sizing":"content-box","background-size":"contain","min-height":"333px"},"silex-id-1437826771147-12":{"width":"397px","top":"63px","left":"8px","box-sizing":"content-box","min-height":"267px"},"silex-id-1437826771046-11":{"width":"226px","top":"8px","left":"148px","box-sizing":"content-box","min-height":"34px"},"silex-id-1437826770945-10":{"width":"261px","left":"5px","border-top-left-radius":"10px","border-top-right-radius":"10px","border-bottom-right-radius":"10px","border-bottom-left-radius":"10px","background-color":"rgba(32,32,32,0.30196078431372547)","top":"3px","box-sizing":"content-box","min-height":"720px"},"silex-id-1437826770844-9":{"width":"200px","top":"109px","left":"0px","min-height":"25px"},"silex-id-1437826770642-7":{"width":"200px","top":"389px","background-color":"transparent","left":"0px","min-height":"24px"},"silex-id-1437826770439-5":{"width":"200px","top":"523px","left":"0px","box-sizing":"content-box","min-height":"26px"},"silex-id-1437826770339-4":{"width":"200px","top":"336px","left":"0px","box-sizing":"content-box","background-color":"transparent","min-height":"24px"},"silex-id-1437826770239-3":{"width":"200px","top":"159px","left":"0px","box-sizing":"content-box","background-color":"transparent","min-height":"24px"},"silex-id-1437826770139-2":{"width":"200px","top":"241px","left":"0px","box-sizing":"content-box","min-height":"24px"},"silex-id-1437826770037-1":{"width":"200px","top":"477px","left":"0px","min-height":"24px"},"silex-id-1437826769937-0":{"width":"261px","top":"5px","background-color":"transparent","left":"0px","box-sizing":"content-box","min-height":"120px"},"silex-id-1445202311082-0":{"width":"408px","top":"408px","left":"438px","background-color":"rgb(101, 83, 99)","box-sizing":"content-box","background-size":"contain","min-height":"333px"},"silex-id-1445202311083-1":{"width":"397px","top":"63px","left":"8px","box-sizing":"content-box","min-height":"267px"},"silex-id-1445202311083-2":{"width":"226px","top":"8px","left":"148px","box-sizing":"content-box","min-height":"34px"},"silex-id-1445203972218-0":{"width":"397px","top":"63px","left":"6px","box-sizing":"content-box","min-height":"267px"},"silex-id-1536497181900-1":{"width":"397px","top":"63px","left":"8px","box-sizing":"content-box","min-height":"267px"},"silex-id-1536497181901-2":{"width":"226px","top":"8px","left":"148px","box-sizing":"content-box","min-height":"34px"},"silex-id-1536497181901-3":{"width":"149px","top":"59px","left":"137px","box-sizing":"content-box","min-height":"257px"},"silex-id-1536497181900-0":{"width":"408px","top":"405px","left":"863px","background-color":"rgb(101, 83, 99)","box-sizing":"content-box","background-size":"contain","min-height":"333px"},"silex-id-1568568049096-0":{"min-height":"48px","top":"0px","left":"0px","width":"256px"},"silex-id-1568569363198-1":{"width":"200px","top":"289px","left":"0px","box-sizing":"content-box","background-color":"transparent","min-height":"24px"},"silex-id-1437826770743-8":{"min-height":"24px","top":"0px","left":"0px","width":"55px"},"silex-id-1568570228568-2":{"width":"","min-height":"100px","background-color":""},"silex-id-1568570228734-3":{},"silex-id-1568570247294-4":{"min-height":"27px","width":"33px","background-color":"transparent","top":"269px","left":"217px"},"silex-id-1439140842917-0":{"min-height":"28px","top":"0px","left":"0px","width":"186px"}},"mobile":{"silex-id-1568570247294-4":{"min-height":"27px","top":"-429px","left":"-92px","width":"33px"},"silex-id-1437826771450-15":{"min-height":"309px","top":"0px","left":"5px","width":"438px"},"silex-id-1437826771652-17":{"min-height":"1295.25px","top":"0px","left":"0px","width":"467px"},"silex-id-1437826771551-16":{"min-height":"280px","top":"0px","left":"-47px","width":"467px"}},"prodotypeData":{"component":{"silex-id-1568570247294-4":{"name":"hamburger1","templateName":"hamburger","links":[{"text":"Accueil","properties":{"href":"#!page-72157648380751487"}},{"text":"Auteur","properties":{"href":"#!page-72157648380421697"}},{"text":"Expo Concours","properties":{"href":"#!page-72157652480183350"}},{"text":"Pôle Nord Arctique","properties":{"href":"#!page-72157648800742675"}},{"text":"Costa Rica","properties":{"href":"#!page-72157700852256414"}},{"text":"Pantanal, Brésil","properties":{"href":"#!page-72157646569789754"}},{"text":"Namibie","properties":{"href":"#!page-72157647556013444"}},{"text":"Nature","properties":{"href":"#!page-72157659602703359"}},{"text":"Paris","properties":{"href":"#!page-72157654005820543"}}]}},"style":{"all-style":{"className":"all-style","templateName":"text","displayName":"All Style","styles":{"desktop":{"normal":{"className":"all-style","pseudoClass":"normal","Link":{"color":"#ffffff","text-decoration":"none"},"All":{"font-family":"'Roboto', sans-serif","font-size":"18px","color":"#FFFFFF","font-weight":"normal","line-height":"2"},"Paragraph":{"font-size":"100%"},"Heading1":{"font-weight":"normal","font-family":"'Indie Flower', cursive"},"Active":{"font-weight":"bold","text-decoration":"underline"}}},"mobile":{"normal":{"templateName":"text","className":"all-style","pseudoClass":"normal","All":{"font-size":"25px","line-height":"","font-family":"","text-align":"center"}}}}},"style-hamburger":{"className":"style-hamburger","templateName":"text","displayName":"Hamburger","styles":{"desktop":{"normal":{"className":"style-hamburger","pseudoClass":"normal"}},"mobile":{"normal":{"templateName":"text","className":"style-hamburger","pseudoClass":"normal","All":{"color":"#000000","font-size":"2em"},"Link":{"color":"#000000"},"UnorderedList":{"list-style-type":"none"}}}}},"style-small":{"className":"style-small","templateName":"text","displayName":"Small","styles":{"desktop":{"normal":{"className":"style-small","pseudoClass":"normal","All":{"font-size":"14px"}}}}},"style-no-underline":{"className":"style-no-underline","templateName":"text","displayName":"No underline","styles":{"desktop":{"normal":{"className":"style-no-underline","pseudoClass":"normal","Active":{"font-weight":"","text-decoration":"none"},"All":{"text-decoration":"none"},"Heading1":{"text-decoration":"none"}}}}}}}}]</script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    
 
     
-<meta name="publicationPath" content="{&quot;name&quot;:&quot;gh-pages&quot;,&quot;folder&quot;:&quot;laphotonature.fr&quot;,&quot;path&quot;:&quot;laphotonature.fr/gh-pages&quot;,&quot;service&quot;:&quot;github&quot;,&quot;url&quot;:&quot;https://lexoyo.github.io/laphotonature.fr/&quot;}"><style class="silex-prodotype-style" type="text/css" data-style-id="all-style">h1 {font-family: 'Indie Flower', cursive; font-weight: normal;}.text-element > .silex-element-content {font-family: 'Roboto', sans-serif; font-weight: normal; font-size: 18px; color: #FFFFFF; line-height: 2;}p {font-size: 100%;}a {color: #ffffff; text-decoration: none;}[data-silex-href] {color: #ffffff; text-decoration: none;}.page-link-active {font-weight: bold; text-decoration: underline;}@media only screen and (max-width: 480px) {.text-element > .silex-element-content {font-size: 25px; text-align: center;}}</style><meta name="viewport" content="width=device-width, initial-scale=1"><style class="silex-prodotype-style" type="text/css" data-style-id="style-hamburger">@media only screen and (max-width: 480px) {.style-hamburger.text-element > .silex-element-content {font-size: 2em; color: #000000;}.style-hamburger a {color: #000000;}.style-hamburger [data-silex-href] {color: #000000;}.style-hamburger ul li {list-style-type: none;}}</style><link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" class="silex-custom-font"><link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet" class="silex-custom-font"><style class="silex-prodotype-style" type="text/css" data-style-id="style-small">.style-small.text-element > .silex-element-content {font-size: 14px;}</style><meta name="hostingProvider" content="ghpages"><meta name="websiteUrl" content="http://laphotonature.fr/"><style class="silex-prodotype-style" type="text/css" data-style-id="style-no-underline">.style-no-underline h1 {text-decoration: none;}.style-no-underline.text-element > .silex-element-content {text-decoration: none;}.style-no-underline .page-link-active {text-decoration: none;}</style><!-- Silex HEAD tag do not remove --><script type="text/javascript" src="js/jquery.flickr.js"></script>
+    <script type="text/javascript" src="js/front-end.js"></script>
+    <!-- Normalize -->
+    <link href="css/normalize.css" rel="stylesheet">
+    <!-- Silex style -->
+    <link href="css/front-end.css" rel="stylesheet">
+
+    
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+    
+<meta name="viewport" content="width=device-width, initial-scale=1"><link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" class="silex-custom-font"><link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet" class="silex-custom-font"><meta name="hostingProvider" content="ghpages"><meta name="websiteUrl" content="http://laphotonature.fr/"><script src="js/script.js" type="text/javascript"></script><link href="css/styles.css" rel="stylesheet" type="text/css"><script type="text/javascript" src="js/jquery.flickr.js"></script>
 
 <script type="text/javascript" src="js/jquery.fancybox.pack.js"></script>
 <link rel="stylesheet" href="css/jquery.fancybox.css">        
-<!-- End of Silex HEAD tag do not remove --></head>
+<style>body { opacity: 0; transition: .25s opacity ease; }</style></head>
 
-<body data-silex-type="container-element" class="silex-id-1437826772462-25 all-style prevent-draggable prevent-resizable prevent-selectable enable-mobile silex-runtime" data-silex-id="silex-id-1437826772462-25" style=""><div data-silex-type="container-element" class="prevent-draggable prevent-resizable container-element editable-style silex-id-1568570228734-3 section-element hide-on-desktop" data-silex-id="silex-id-1568570228734-3"><div data-silex-type="container-element" class="editable-style silex-id-1568570228568-2 container-element silex-element-content silex-container-content website-width prevent-draggable" data-silex-id="silex-id-1568570228568-2"><div data-silex-type="text-element" class="editable-style silex-id-1568570247294-4 text-element silex-component prevent-resizable prevent-auto-z-index style-hamburger" data-silex-id="silex-id-1568570247294-4" style=""><div class="silex-element-content normal"><style>.hamburger-menu_1568572049110_475 {position: absolute; z-index: 20;}.silex-editor .hamburger-menu_1568572049110_475 nav {left: -9999px;}.hamburger-menu_1568572049110_475 nav ul {margin-top: 80px;}.hamburger-menu_1568572049110_475 nav {opacity: 0; position: absolute; background-color: #ededed; transition: left 1s ease, height 0s ease 1s; left: -300px; width: 300px; height: 20px;}.hamburger-menu_1568572049110_475.open nav {opacity: 1; height: 100vh; left: 0; transition: left 1s ease, height 0s ease 0s;}.hamburger-menu_1568572049110_475 .nav-container {z-index: 10; position: absolute;}.hamburger-menu_1568572049110_475.open .nav-container {}.hamburger-menu_1568572049110_475 .hamburger-btn {z-index: 20; cursor: pointer; position: absolute;}.hamburger-menu_1568572049110_475 .hamburger-btn span {display: block; width: 30px; height: 5px; margin-bottom: 3px; position: relative; background-color: #000000; border: 1px solid #ffffff; border-radius: 3px; transition: border-color 0.1s ease-in,
+<body data-silex-type="container-element" class="silex-id-1437826772462-25 all-style enable-mobile silex-runtime silex-published" style=""><div data-silex-type="container-element" class="container-element editable-style silex-id-1568570228734-3 section-element hide-on-desktop"><div data-silex-type="container-element" class="editable-style silex-id-1568570228568-2 container-element silex-element-content silex-container-content website-width"><div data-silex-type="text-element" class="editable-style silex-id-1568570247294-4 text-element silex-component prevent-auto-z-index style-hamburger" style=""><div class="silex-element-content normal"><style>.hamburger-menu_1568572049110_475 {position: absolute; z-index: 20;}.silex-editor .hamburger-menu_1568572049110_475 nav {left: -9999px;}.hamburger-menu_1568572049110_475 nav ul {margin-top: 80px;}.hamburger-menu_1568572049110_475 nav {opacity: 0; position: absolute; background-color: #ededed; transition: left 1s ease, height 0s ease 1s; left: -300px; width: 300px; height: 20px;}.hamburger-menu_1568572049110_475.open nav {opacity: 1; height: 100vh; left: 0; transition: left 1s ease, height 0s ease 0s;}.hamburger-menu_1568572049110_475 .nav-container {z-index: 10; position: absolute;}.hamburger-menu_1568572049110_475.open .nav-container {}.hamburger-menu_1568572049110_475 .hamburger-btn {z-index: 20; cursor: pointer; position: absolute;}.hamburger-menu_1568572049110_475 .hamburger-btn span {display: block; width: 30px; height: 5px; margin-bottom: 3px; position: relative; background-color: #000000; border: 1px solid #ffffff; border-radius: 3px; transition: border-color 0.1s ease-in,
       opacity 0.1s ease-in,
       transform 0.1s ease-in,
       background 0.1s ease-in;}.hamburger-menu_1568572049110_475.open .hamburger-btn span {border-color: rgba(255, 255, 255, 0);}.hamburger-menu_1568572049110_475 .hamburger-btn span:first-child {transform-origin: 4px -2px;}.hamburger-menu_1568572049110_475.open .hamburger-btn span:first-child {transform: rotate(45deg) translate(7px, -4px);}.hamburger-menu_1568572049110_475.open .hamburger-btn span:nth-last-child(2) {opacity: 0;}.hamburger-menu_1568572049110_475 .hamburger-btn span:nth-child(3) {transform-origin: -11px 4px;}.hamburger-menu_1568572049110_475.open .hamburger-btn span:nth-child(3) {transform: rotate(-45deg) translate(0, 12px);}</style>
@@ -197,23 +70,23 @@ jQuery.browser = browser;</script>
         <nav role="navigation" class="">
             <ul>
             
-                <li><a href="#!page-72157648380751487" class="">Accueil</a></li>
+                <li><a href="index.html" class="page-link-active">Accueil</a></li>
             
-                <li><a href="#!page-72157648380421697" class="">Auteur</a></li>
+                <li><a href="72157648380421697.html" class="">Auteur</a></li>
             
-                <li><a href="#!page-72157652480183350">Expo Concours</a></li>
+                <li><a href="72157652480183350.html">Expo Concours</a></li>
             
-                <li><a href="#!page-72157648800742675" class="">Pôle Nord Arctique</a></li>
+                <li><a href="72157648800742675.html" class="">Pôle Nord Arctique</a></li>
             
-                <li><a href="#!page-72157700852256414">Costa Rica</a></li>
+                <li><a href="72157700852256414.html">Costa Rica</a></li>
             
-                <li><a href="#!page-72157646569789754">Pantanal, Brésil</a></li>
+                <li><a href="72157646569789754.html">Pantanal, Brésil</a></li>
             
-                <li><a href="#!page-72157647556013444">Namibie</a></li>
+                <li><a href="72157647556013444.html">Namibie</a></li>
             
-                <li><a href="#!page-72157659602703359">Nature</a></li>
+                <li><a href="72157659602703359.html">Nature</a></li>
             
-                <li><a href="#!page-72157654005820543">Paris</a></li>
+                <li><a href="72157654005820543.html">Paris</a></li>
             
             </ul>
         </nav>
@@ -257,30 +130,18 @@ jQuery.browser = browser;</script>
 
 
 
-    <div data-silex-type="html-element" class="editable-style html-element paged-element page-72157648380751487 silex-id-1437826772361-24 full-width full-height flickr" data-silex-id="silex-id-1437826772361-24" style="">
+    <div data-silex-type="html-element" class="editable-style html-element page-72157648380751487 silex-id-1437826772361-24 full-width full-height flickr" style="">
         <div class="silex-element-content"></div>
     </div>
 
 
     
-    <div data-silex-type="text-element" class="editable-style text-element paged-element right-side page-72157651995231100 silex-id-1437826772158-22" data-silex-id="silex-id-1437826772158-22">
-        <div class="silex-element-content normal">
-            <header style="text-align: right;"><a href="#!page-voyages" class="title">X</a>&nbsp; &nbsp;&nbsp;</header>
-        </div>
-    </div>
-    <div data-silex-type="container-element" class="editable-style container-element page-voyages paged-element silex-id-1437826772057-21" data-silex-href="#!page-72157646569789754" data-silex-id="silex-id-1437826772057-21">
-        <div data-silex-type="text-element" class="editable-style text-element silex-id-1437826771955-20" data-silex-id="silex-id-1437826771955-20" style="">
-            <div class="silex-element-content normal">Le Pantanal, Brésil</div>
-        </div>
-        <div data-silex-type="image-element" class="editable-style image-element silex-id-1437826771854-19" data-silex-id="silex-id-1437826771854-19"><img src="../../../../dropbox/get/taf-shared/Site%20GLR%20laphotonature.fr/assets/DSC_2072%20m1080.jpg" class="silex-element-content">
-        </div>
-    </div>
+    
+    
 
 
 
-    <div data-silex-type="html-element" class="editable-style html-element paged-element page-72157648800742675 page-72157651995231100 page-72157652480183350 page-72157647556013444 page-72157646569789754 silex-id-1437826771753-18 page-72157659602703359 page-72157660000441532 page-72157659598558289 page-72157654005820543 page-72157700852256414 right-side bottom-side gallery" data-silex-id="silex-id-1437826771753-18">
-        <div class="silex-element-content"></div>
-    </div>
+    
 
 
 
@@ -293,46 +154,15 @@ jQuery.browser = browser;</script>
 
 
 
-    <div data-silex-type="container-element" class="editable-style container-element page-72157648380421697 paged-element silex-id-1437826771652-17 under right-side" data-silex-id="silex-id-1437826771652-17" style="">
+    
 
 
 
 
 
+    
 
-        <div data-silex-type="image-element" class="editable-style image-element silex-id-1437826771450-15" data-silex-id="silex-id-1437826771450-15" style=""><img src="../../../../dropbox/get/taf-shared/Site%20GLR%20laphotonature.fr/assets/DSC_5712%20nokm%204,5x3.jpg" class="silex-element-content">
-        </div><div data-silex-type="text-element" class="editable-style text-element silex-id-1437826771551-16" data-silex-id="silex-id-1437826771551-16" style="">
-            <div class="silex-element-content normal"><p>
-                    Je suis né en Bretagne et aujourd'hui j'habite en Région Parisienne.
-                    
-                        Je parcours la campagne ou la ville tous les jours pour témoigner par la photographie de leur richesse et en garder des souvenirs.
-                    
-                    
-                        Avec ce site, je veux partager ma passion pour la photographie en montrant des clichés saisis avec mon appareil numérique aussi bien en France qu'à l'étranger.
-                    
-                    
-                        <br>
-                    
-                </p></div>
-        </div>
-        
-        <div data-silex-type="image-element" class="editable-style image-element silex-id-1437826771350-14" data-silex-id="silex-id-1437826771350-14" style=""><img src="../../../../dropbox/get/taf-shared/Site%20GLR%20laphotonature.fr/assets/DSC_6165%20m%201080.jpg" class="silex-element-content">
-        </div>
-    </div>
-
-
-
-
-
-    <div data-silex-type="container-element" class="editable-style container-element page-voyages paged-element silex-id-1437826771249-13" data-silex-href="#!page-72157647556013444" data-silex-id="silex-id-1437826771249-13">
-        <div data-silex-type="image-element" class="editable-style image-element silex-id-1437826771147-12" data-silex-id="silex-id-1437826771147-12"><img src="../../../../dropbox/get/taf-shared/Site%20GLR%20laphotonature.fr/assets/532118%20ms%201080%20.jpg" class="silex-element-content">
-        </div>
-        <div data-silex-type="text-element" class="editable-style text-element silex-id-1437826771046-11" data-silex-id="silex-id-1437826771046-11">
-            <div class="silex-element-content normal">La Namibie</div>
-        </div>
-    </div>
-
-    <div data-silex-type="container-element" class="editable-style container-element silex-id-1437826770945-10 hide-on-mobile fixed over" data-silex-id="silex-id-1437826770945-10" style="">
+    <div data-silex-type="container-element" class="editable-style container-element silex-id-1437826770945-10 hide-on-mobile fixed over" style="">
         
         
         
@@ -345,9 +175,9 @@ jQuery.browser = browser;</script>
 
         
 
-        <div data-silex-type="text-element" class="editable-style text-element silex-id-1437826770339-4" data-silex-href="#!page-72157646569789754" data-silex-id="silex-id-1437826770339-4" style="">
+        <a href="72157646569789754.html" data-silex-type="text-element" class="editable-style text-element silex-id-1437826770339-4" style="">
             <div class="silex-element-content normal">Pantanal, Brésil</div>
-        </div>
+        </a>
         
 
 
@@ -355,26 +185,26 @@ jQuery.browser = browser;</script>
         
         
 
-        <div data-silex-type="text-element" class="editable-style text-element silex-id-1437826769937-0 full-width style-no-underline" data-silex-href="#!page-72157648380751487" data-silex-id="silex-id-1437826769937-0" style="">
+        <a href="index.html" data-silex-type="text-element" class="editable-style text-element silex-id-1437826769937-0 full-width style-no-underline page-link-active" style="">
             <div class="silex-element-content normal"><h1>Georges Le Roux</h1>
             </div>
-        </div>
+        </a>
         
-    <div data-silex-type="text-element" class="editable-style text-element silex-id-1437826770844-9" data-silex-href="#!page-72157648380421697" data-silex-id="silex-id-1437826770844-9" style="">
+    <a href="72157648380421697.html" data-silex-type="text-element" class="editable-style text-element silex-id-1437826770844-9" style="">
             <div class="silex-element-content normal">L'auteur</div>
-        </div><div data-silex-type="text-element" class="editable-style text-element silex-id-1437826770139-2" data-silex-href="#!page-72157648800742675" data-silex-id="silex-id-1437826770139-2" style="">
+        </a><a href="72157648800742675.html" data-silex-type="text-element" class="editable-style text-element silex-id-1437826770139-2" style="">
             <div class="silex-element-content normal">Pôle Nord Arctique<br></div>
-        </div><div data-silex-type="text-element" class="editable-style text-element silex-id-1437826770439-5" data-silex-href="#!page-72157654005820543" data-silex-id="silex-id-1437826770439-5" style="">
+        </a><a href="72157654005820543.html" data-silex-type="text-element" class="editable-style text-element silex-id-1437826770439-5" style="">
             <div class="silex-element-content normal">Paris</div>
-        </div><div data-silex-type="text-element" class="editable-style text-element silex-id-1437826770037-1" data-silex-href="#!page-72157659602703359" data-silex-id="silex-id-1437826770037-1" style="">
+        </a><a href="72157659602703359.html" data-silex-type="text-element" class="editable-style text-element silex-id-1437826770037-1" style="">
             <div class="silex-element-content normal">Nature</div>
-        </div><div data-silex-type="text-element" class="editable-style text-element silex-id-1437826770239-3" data-silex-href="#!page-72157652480183350" data-silex-id="silex-id-1437826770239-3" style="">
+        </a><a href="72157652480183350.html" data-silex-type="text-element" class="editable-style text-element silex-id-1437826770239-3" style="">
             <div class="silex-element-content normal">Expos Concours<br></div>
-        </div><div data-silex-type="text-element" class="editable-style text-element silex-id-1437826770642-7" data-silex-href="#!page-72157647556013444" data-silex-id="silex-id-1437826770642-7" style="">
+        </a><a href="72157647556013444.html" data-silex-type="text-element" class="editable-style text-element silex-id-1437826770642-7" style="">
             <div class="silex-element-content normal">Namibie</div>
-        </div><div data-silex-type="text-element" class="editable-style text-element silex-id-1568569363198-1" data-silex-href="#!page-72157700852256414" data-silex-id="silex-id-1568569363198-1" style="">
+        </a><a href="72157700852256414.html" data-silex-type="text-element" class="editable-style text-element silex-id-1568569363198-1" style="">
             <div class="silex-element-content normal">Costa Rica</div>
-        </div></div>
+        </a></div>
 
 
 
@@ -384,17 +214,7 @@ jQuery.browser = browser;</script>
 
 
 
-    <div data-silex-type="container-element" class="editable-style container-element silex-id-1445202311082-0 page-voyages paged-element" data-silex-href="#!page-72157659598558289" data-silex-id="silex-id-1445202311082-0">
-
-
-        <div data-silex-type="image-element" class="editable-style image-element silex-id-1445202311083-1 page-72157659598558289 paged-element" data-silex-id="silex-id-1445202311083-1"><img src="../../../../dropbox/get/taf-shared/Site%20GLR%20laphotonature.fr/assets/532118%20ms%201080%20.jpg" class="silex-element-content">
-        </div>
-        <div data-silex-type="text-element" class="editable-style text-element silex-id-1445202311083-2" data-silex-id="silex-id-1445202311083-2">
-            <div class="silex-element-content normal">La Réunion</div>
-        </div>
-        <div data-silex-type="image-element" class="editable-style image-element silex-id-1445203972218-0" data-silex-id="silex-id-1445203972218-0">
-            <img src="../../../../dropbox/get/taf-shared/Site%20GLR%20laphotonature.fr/assets/DSC_7029%20m%20GLR.jpg" class="silex-element-content"></div>
-    </div>
+    
 
 
 
@@ -416,24 +236,14 @@ jQuery.browser = browser;</script>
 
 
     <div class="silex-pages">
-        <a id="page-72157648380751487" data-silex-type="page-element" class="page-element" href="#!page-72157648380751487">72157648380751487</a><a id="page-72157648380421697" data-silex-type="page-element" class="page-element" href="#!page-72157648380421697">72157648380421697</a>
-        <a id="page-72157648800742675" data-silex-type="page-element" class="page-element" href="#!page-72157648800742675">72157648800742675</a><a id="page-72157659602703359" data-silex-type="page-element" class="page-element" href="#!page-72157659602703359">72157659602703359</a><a id="page-72157660000441532" data-silex-type="page-element" class="page-element" href="#!page-72157660000441532">72157660000441532</a>
-            <a id="page-voyages" data-silex-type="page-element" class="page-element" href="#!page-voyages">voyages</a><a id="page-72157654005820543" data-silex-type="page-element" class="page-element" href="#!page-72157654005820543">72157654005820543</a><a id="page-72157651995231100" data-silex-type="page-element" class="page-element" href="#!page-72157651995231100">72157651995231100</a>
-            <a id="page-72157652480183350" data-silex-type="page-element" class="page-element" href="#!page-72157652480183350">72157652480183350</a><a id="page-72157647556013444" data-silex-type="page-element" class="page-element" href="#!page-72157647556013444">72157647556013444</a><a id="page-72157646569789754" data-silex-type="page-element" class="page-element" href="#!page-72157646569789754">72157646569789754</a><a id="page-72157659598558289" data-silex-type="page-element" class="page-element" href="#!page-72157659598558289">72157659598558289</a><a id="page-72157700852256414" data-silex-type="page-element" class="page-element" href="#!page-72157700852256414">72157700852256414</a></div>
+        <a id="page-72157648380751487" data-silex-type="page-element" class="page-element page-link-active" href="index.html">72157648380751487</a><a id="page-72157648380421697" data-silex-type="page-element" class="page-element" href="72157648380421697.html">72157648380421697</a>
+        <a id="page-72157648800742675" data-silex-type="page-element" class="page-element" href="72157648800742675.html">72157648800742675</a><a id="page-72157659602703359" data-silex-type="page-element" class="page-element" href="72157659602703359.html">72157659602703359</a><a id="page-72157660000441532" data-silex-type="page-element" class="page-element" href="72157660000441532.html">72157660000441532</a>
+            <a id="page-voyages" data-silex-type="page-element" class="page-element" href="voyages.html">voyages</a><a id="page-72157654005820543" data-silex-type="page-element" class="page-element" href="72157654005820543.html">72157654005820543</a><a id="page-72157651995231100" data-silex-type="page-element" class="page-element" href="72157651995231100.html">72157651995231100</a>
+            <a id="page-72157652480183350" data-silex-type="page-element" class="page-element" href="72157652480183350.html">72157652480183350</a><a id="page-72157647556013444" data-silex-type="page-element" class="page-element" href="72157647556013444.html">72157647556013444</a><a id="page-72157646569789754" data-silex-type="page-element" class="page-element" href="72157646569789754.html">72157646569789754</a><a id="page-72157659598558289" data-silex-type="page-element" class="page-element" href="72157659598558289.html">72157659598558289</a><a id="page-72157700852256414" data-silex-type="page-element" class="page-element" href="72157700852256414.html">72157700852256414</a></div>
 
 
 
 
-<div data-silex-type="container-element" class="editable-style container-element silex-id-1536497181900-0 page-voyages paged-element" data-silex-href="#!page-72157700852256414" data-silex-id="silex-id-1536497181900-0" style="">
-
-
-        <div data-silex-type="image-element" class="editable-style image-element page-72157659598558289 paged-element silex-id-1536497181900-1" data-silex-id="silex-id-1536497181900-1"><img src="../../../../dropbox/get/taf-shared/Site%20GLR%20laphotonature.fr/assets/532118%20ms%201080%20.jpg" class="silex-element-content">
-        </div>
-        <div data-silex-type="text-element" class="editable-style text-element silex-id-1536497181901-2" data-silex-id="silex-id-1536497181901-2">
-            <div class="silex-element-content normal">Costa Rica<br></div>
-        </div>
-        
-    <div data-silex-type="image-element" class="editable-style image-element silex-id-1536497181901-3" data-silex-id="silex-id-1536497181901-3" style="">
-            <img src="../../../../dropbox/get/taf-shared/Site%20GLR%20laphotonature.fr/assets/costarica.jpg" class="silex-element-content"></div></div><div data-silex-type="text-element" class="editable-style text-element silex-id-1437826772259-23 footer fixed bottom style-small" data-silex-id="silex-id-1437826772259-23" style="">
+<div data-silex-type="text-element" class="editable-style text-element silex-id-1437826772259-23 footer fixed bottom style-small" style="">
         <div class="silex-element-content normal"><p>Dernière mise à jour sept 2019</p><p><br></p><div>This website is <a href="//www.silex.me">powered by Silex, free website builder&nbsp;for designers</a>.&nbsp;</div><span class="_wysihtml-temp-caret-fix" style="position: absolute; display: block; min-width: 1px; z-index: 99999;">﻿</span></div>
     </div></body></html>
