@@ -9,10 +9,10 @@ var HOME_PAGE_NAME = '72157648380751487'
                 size: 'o',
                 thumb_size: 'n',
                 displayType: displayType,
-                callback: function(){
+                callback: function(e){
                     // lightbox
                     if (displayType === 'fancybox'){
-                      $('a').fancybox();
+                      $(jQuerySelector).find('a').fancybox();
                     }
                     // callback
                     if (opt_cbk){
