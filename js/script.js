@@ -2,7 +2,6 @@
 var HOME_PAGE_NAME = '72157648380751487'
         function flickIt(jQuerySelector, displayType, photosetId, opt_cbk){
             //jQuerySelector.html('<p class="flickr-msg">Chargement</p>');
-            console.log('flickit xxxxxxxxx', jQuerySelector, displayType)
             jQuerySelector.flickr({
                 api_key: "7b5f9448ae4547ff02d6ce3db22e482d",
                 type: 'photoset',
@@ -11,10 +10,8 @@ var HOME_PAGE_NAME = '72157648380751487'
                 thumb_size: 'n',
                 displayType: displayType,
                 callback: function(e){
-                    console.log('cbk kkkkk', displayType, opt_cbk)
                     // lightbox
                     if (displayType === 'fancybox'){
-                        console.log('cbk ', $(jQuerySelector).find('a'))
                       $(jQuerySelector).find('a').fancybox();
                     }
                     // callback
@@ -29,7 +26,6 @@ var HOME_PAGE_NAME = '72157648380751487'
         }
         
         function slideIt(jQuerySelector){
-            console.log('slideIt', jQuerySelector, $(jQuerySelector).find('ul > li:gt(0)'))
             $(jQuerySelector).find('ul > li:gt(0)').css('opacity', '0');
             setInterval(function() {
               $(jQuerySelector).find('ul > li:first')
@@ -51,8 +47,6 @@ var HOME_PAGE_NAME = '72157648380751487'
             flickIt(jQuerySelector, 'fancybox', getPhotosetId(currentPage));
         }
         $(function(){
-            console.log('starting xxxxxxxxx')
-
             var currentPage = getCurrentPageName();
             var isGalery = 
                 (!!$(".gallery")[0] && $(".gallery")[0].classList.contains('paged-element-visible'))
@@ -60,15 +54,12 @@ var HOME_PAGE_NAME = '72157648380751487'
             var isSlideshow = 
                 (!!$(".flickr")[0] && $(".flickr")[0].classList.contains('paged-element-visible'))
                 || (!!$(".silex-published .flickr")[0])
-            console.log('starting 2', currentPage, isGalery, isSlideshow)
 
             if(isSlideshow) {
-                console.log('isSlideshow')
                 window.jQuerySelector = $(".flickr .silex-element-content");
                 flickIt(window.jQuerySelector, 'slideshow', currentPage, slideIt);
             }
             if(isGalery) {
-                console.log('isGalery')
                 window.jQuerySelector = $(".gallery");
                 flickIt(window.jQuerySelector, 'fancybox', getPhotosetId(currentPage));
             }
@@ -85,9 +76,7 @@ var HOME_PAGE_NAME = '72157648380751487'
         });
 function getCurrentPageName() {
     var res = window.location.href.split('#').pop().split('!page-').pop().split('/').pop().split('.')[0];
-    console.log('getCurrentPageName', res, HOME_PAGE_NAME)
     if(!res || res === 'index') return HOME_PAGE_NAME;
-    console.log('getCurrentPageName xxxxxxxxx')
     return res;
 }
 
