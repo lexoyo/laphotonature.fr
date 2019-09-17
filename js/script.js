@@ -51,8 +51,12 @@ var HOME_PAGE_NAME = '72157648380751487'
             console.log('starting xxxxxxxxx')
 
             var currentPage = getCurrentPageName();
-            var isGalery = !!$(".gallery")[0] && $(".gallery")[0].classList.contains('paged-element-visible');
-            var isSlideshow = !!$(".flickr")[0] && $(".flickr")[0].classList.contains('paged-element-visible');
+            var isGalery = 
+                (!!$(".gallery")[0] && $(".gallery")[0].classList.contains('paged-element-visible'))
+                || (!!$(".silex-published .gallery")[0])
+            var isSlideshow = 
+                (!!$(".flickr")[0] && $(".flickr")[0].classList.contains('paged-element-visible'))
+                || (!!$(".silex-published .flickr")[0])
             console.log('starting 2', currentPage, isGalery, isSlideshow)
 
             if(isSlideshow) {
