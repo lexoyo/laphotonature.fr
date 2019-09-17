@@ -42,7 +42,7 @@
             //return albums[pageName] || albums['default'];
         }
         function onPageChange(newUrl){
-            var currentPage = newUrl.split('#').pop().split('!page-').pop().split('/').pop().split('.')[0];
+            var currentPage = getCurrentPageName();
             window.jQuerySelector = $(".gallery");
             flickIt(jQuerySelector, 'fancybox', getPhotosetId(currentPage));
         }
@@ -54,14 +54,16 @@
 
             // var currentPage = window.location.href.split('/').pop().split('.')[0];
             // works in preview and published
-            var currentPage = window.location.href.split('#').pop().split('!page-').pop().split('/').pop().split('.')[0];
+            var currentPage = getCurrentPageName();
             flickIt(jQuerySelector, 'slideshow', currentPage, slideIt);
             onPageChange(window.location.href);
         })
         $(window).bind( 'hashchange', function (e){
             onPageChange(window.location.href);
         });
-
+function getCurrentPageName() {
+    return window.location.href.split('#').pop().split('!page-').pop().split('/').pop().split('.')[0] || '72157648380751487';
+}
 
 // code from https://stackoverflow.com/questions/14798403/typeerror-browser-is-undefined
         var matched, browser;
