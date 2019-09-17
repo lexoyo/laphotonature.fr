@@ -42,7 +42,7 @@
             //return albums[pageName] || albums['default'];
         }
         function onPageChange(newUrl){
-            var currentPage = newUrl.substr(newUrl.indexOf('#!page-') + 7);
+            var currentPage = newUrl.split('#').pop().split('!page-').pop().split('/').pop().split('.')[0];
             window.jQuerySelector = $(".gallery");
             flickIt(jQuerySelector, 'fancybox', getPhotosetId(currentPage));
         }
