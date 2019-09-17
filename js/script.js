@@ -62,12 +62,12 @@ var HOME_PAGE_NAME = '72157648380751487'
             if(isSlideshow) {
                 console.log('isSlideshow')
                 window.jQuerySelector = $(".flickr .silex-element-content");
-                flickIt(jQuerySelector, 'slideshow', currentPage, slideIt);
+                flickIt(window.jQuerySelector, 'slideshow', currentPage, slideIt);
             }
             if(isGalery) {
                 console.log('isGalery')
                 window.jQuerySelector = $(".gallery");
-                flickIt(jQuerySelector, 'fancybox', getPhotosetId(currentPage));
+                flickIt(window.jQuerySelector, 'fancybox', getPhotosetId(currentPage));
             }
             //flickIt(jQuerySelector, 'slideshow', albums.home, slideIt);
             // var currentPage = $('body').pageable().data()["silexlabs-pageable"].options.currentPage;
