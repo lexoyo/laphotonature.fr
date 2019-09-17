@@ -55,7 +55,6 @@
             // var currentPage = window.location.href.split('/').pop().split('.')[0];
             // works in preview and published
             var currentPage = window.location.href.split('#').pop().split('!page-').pop().split('/').pop().split('.')[0];
-            console.log('xx', window.location.href, currentPage)
             flickIt(jQuerySelector, 'slideshow', currentPage, slideIt);
             onPageChange(window.location.href);
         })
