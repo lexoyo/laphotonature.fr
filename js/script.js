@@ -27,6 +27,7 @@ var HOME_PAGE_NAME = '72157648380751487'
         }
         
         function slideIt(jQuerySelector){
+            console.log('slideIt', jQuerySelector, $(jQuerySelector).find('ul > li:gt(0)'))
             $(jQuerySelector).find('ul > li:gt(0)').css('opacity', '0');
             setInterval(function() {
               $(jQuerySelector).find('ul > li:first')
