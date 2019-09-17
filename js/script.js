@@ -1,5 +1,5 @@
 
-
+var HOME_PAGE_NAME = '72157648380751487'
         function flickIt(jQuerySelector, displayType, photosetId, opt_cbk){
             jQuerySelector.html('loading...');
             jQuerySelector.flickr({
@@ -47,23 +47,29 @@
             flickIt(jQuerySelector, 'fancybox', getPhotosetId(currentPage));
         }
         $(function(){
-            window.jQuerySelector = $(".flickr .silex-element-content");
+            var currentPage = getCurrentPageName();
+            if(currentPage === HOME_PAGE_NAME) {
+                window.jQuerySelector = $(".flickr .silex-element-content");
+                flickIt(jQuerySelector, 'slideshow', currentPage, slideIt);
+            }
+            else {
+                window.jQuerySelector = $(".gallery");
+                flickIt(jQuerySelector, 'fancybox', getPhotosetId(currentPage));
+            }
             //flickIt(jQuerySelector, 'slideshow', albums.home, slideIt);
             // var currentPage = $('body').pageable().data()["silexlabs-pageable"].options.currentPage;
             // currentPage = currentPage.substr(currentPage.indexOf('page-') + 5);
 
             // var currentPage = window.location.href.split('/').pop().split('.')[0];
             // works in preview and published
-            var currentPage = getCurrentPageName();
-            flickIt(jQuerySelector, 'slideshow', currentPage, slideIt);
-            onPageChange(window.location.href);
+//            onPageChange(window.location.href);
         })
         $(window).bind( 'hashchange', function (e){
             onPageChange(window.location.href);
         });
 function getCurrentPageName() {
     var res = window.location.href.split('#').pop().split('!page-').pop().split('/').pop().split('.')[0];
-    if(res === 'index') return '72157648380751487';
+    if(res === 'index') return HOME_PAGE_NAME;
     return res;
 }
 
