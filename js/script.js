@@ -2,6 +2,7 @@
 var HOME_PAGE_NAME = '72157648380751487'
         function flickIt(jQuerySelector, displayType, photosetId, opt_cbk){
             jQuerySelector.html('loading...');
+            console.log('flickit xxxxxxxxx', displayType)
             jQuerySelector.flickr({
                 api_key: "7b5f9448ae4547ff02d6ce3db22e482d",
                 type: 'photoset',
@@ -50,14 +51,16 @@ var HOME_PAGE_NAME = '72157648380751487'
             console.log('starting xxxxxxxxx')
 
             var currentPage = getCurrentPageName();
+            var isGalery = $(".gallery")[0].classList.contains('paged-element-visible');
+            var isSlideshow = $(".flicker .silex-element-content")[0].classList.contains('paged-element-visible');
             console.log('starting 2', currentPage)
 
-            if(currentPage === HOME_PAGE_NAME) {
+            if(isSlideshow) {
                 console.log('starting 3')
                 window.jQuerySelector = $(".flickr .silex-element-content");
                 flickIt(jQuerySelector, 'slideshow', currentPage, slideIt);
             }
-            else {
+            if(isGalery) {
                 console.log('starting 4')
                 window.jQuerySelector = $(".gallery");
                 flickIt(jQuerySelector, 'fancybox', getPhotosetId(currentPage));
