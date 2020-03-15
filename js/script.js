@@ -12,7 +12,13 @@ var HOME_PAGE_NAME = '72157648380751487'
                 callback: function(e){
                     // lightbox
                     if (displayType === 'fancybox'){
-                      $(jQuerySelector).find('a').fancybox();
+                      $(jQuerySelector).find('a').fancybox({
+                        helpers : {
+                          title: {
+                            type: 'inside'
+                          }
+                        }
+                      });
                     }
                     // callback
                     if (opt_cbk){
